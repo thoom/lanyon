@@ -20,18 +20,18 @@ if [ ! -z "$GIT_NAME" ]; then
 fi
 
 # Dont pull code down if the .git folder exists
-if [ ! -d "/var/www/html/.git" ]; then
+if [ ! -d "/var/www/.git" ]; then
  # Pull down code from git for our site!
  if [ ! -z "$GIT_REPO" ]; then
    # Remove the test index file
-   rm -Rf /var/www/html
+   rm -Rf /var/www
    if [ ! -z "$GIT_BRANCH" ]; then
-     git clone -b $GIT_BRANCH $GIT_REPO /var/www/html
+     git clone -b $GIT_BRANCH $GIT_REPO /var/www
    else
-     git clone $GIT_REPO /var/www/html
+     git clone $GIT_REPO /var/www
    fi
 
-   cd /var/www/html
+   cd /var/www
    bundle install
    jekyll build
  fi
@@ -43,7 +43,7 @@ if [[ "$HIDE_NGINX_HEADERS" == "0" ]] ; then
 fi
 
 # Always chown webroot for better mounting
-chown -Rf nginx.nginx /var/www/html
+chown -Rf nginx.nginx /var/www
 
 # Start nginx
 nginx -g "daemon off;"
