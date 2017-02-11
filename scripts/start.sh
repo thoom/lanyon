@@ -32,7 +32,7 @@ if [ ! -d "/var/www/.git" ]; then
    fi
 
    cd /var/www
-   bundle install
+   bundle install --without=development
    jekyll build
  fi
 fi
