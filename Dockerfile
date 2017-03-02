@@ -13,7 +13,11 @@ RUN apk add --no-cache --update --virtual .build-deps \
     git \
     ruby \
     tini \
-    && gem install -N jekyll io-console json bundler \
+    && gem install -N \
+    jekyll \
+    io-console \
+    json \
+    bundler \
     && apk del .build-deps
 
 ADD conf/nginx-site.conf /etc/nginx/conf.d/default.conf
